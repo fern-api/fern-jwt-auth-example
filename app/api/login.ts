@@ -20,7 +20,7 @@ export function signFernJWT(fern: FernUser): Promise<string> {
     .setProtectedHeader({ alg: "HS256", typ: "JWT" })
     .setIssuedAt()
     .setExpirationTime("30d")
-    .setIssuer("https://buildwithfern.com")
+    .setIssuer("https://test-jwt-auth-smoky.vercel.app")
     .sign(getJwtTokenSecret());
 }
 
