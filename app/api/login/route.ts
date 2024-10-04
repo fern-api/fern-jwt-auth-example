@@ -15,7 +15,7 @@ function getJwtTokenSecret(): Uint8Array {
   return new TextEncoder().encode(process.env.JWT_TOKEN_SECRET);
 }
 
-export function signFernJWT(fern: FernUser): Promise<string> {
+function signFernJWT(fern: FernUser): Promise<string> {
   return new SignJWT({ fern })
     .setProtectedHeader({ alg: "HS256", typ: "JWT" })
     .setIssuedAt()
