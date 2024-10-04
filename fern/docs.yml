@@ -1,0 +1,14 @@
+instances:
+  - url: https://test-jwt-auth-smoky.docs.buildwithfern.com
+title: Test JWT Auth
+navigation:
+  - api: API Reference
+  - section: My Section
+    contents:
+      - page: Public Page
+        path: test.mdx
+      - page: Protected Page
+        path: test.mdx
+colors:
+  accentPrimary: "#ffffff"
+  background: "#000000"
