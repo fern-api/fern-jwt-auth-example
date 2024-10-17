@@ -1,14 +1,17 @@
 import { SignJWT } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
-// your domain
-const JWT_ISSUER = "https://test-jwt-auth-smoky.vercel.app"
+// Please reach out to the Fern Team if you have any questions about this setup.
 
-// this is the domain of your docs, i.e. docs.yourdomain.com (or, subpathed, use the apex here: yourdomain.com);
-const DOCS_ORIGIN = "https://test-jwt-auth-smoky.docs.buildwithfern.com";
+// your domain
+const JWT_ISSUER = "https://yourdomain.com"
+
+// this is the domain of your docs, (or, if subpathed, use the apex here: yourdomain.com);
+const DOCS_ORIGIN = "https://docs.yourdomain.com";
 
 // this is path that you will redirect to in the docs instance, and let Fern set the fern_token. This is preferred.
 // alternatively, you may opt to set the `Set-Cookie` header directly using `fern_token` (case sensitive) if on the same domain.
+// if subpathed docs, be sure to include the subpath set by your proxy, i.e. `/docs/api/fern-docs/auth/jwt/callback`.
 const JWT_CALLBACK_PATHNAME = "/api/fern-docs/auth/jwt/callback";
 
 // JWT payload must include a `fern` key. All fields are optional:
