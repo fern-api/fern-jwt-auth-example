@@ -2,6 +2,8 @@ import { SignJWT } from "jose";
 import { NextRequest, NextResponse } from "next/server";
 
 // Please reach out to the Fern Team if you have any questions about this setup.
+// In this example, we show how you can write a lambda handler (or cloudflare worker) can be setup after the user logs in via your identity provider
+// and mint a JWT (which we refer to as the `fern_token`) which will give users access to VIEW your docs.
 
 // your domain
 const JWT_ISSUER = "https://yourdomain.com"
@@ -16,8 +18,8 @@ const JWT_CALLBACK_PATHNAME = "/api/fern-docs/auth/jwt/callback";
 
 // JWT payload must include a `fern` key. All fields are optional:
 interface FernUser {
-  apiKey?: string; // api key injection
-  audience?: string[]; // ACLs
+  apiKey?: string; // api key injection into the runnable API Playground
+  audience?: string[]; // ACLs -> this controls which part of the docs are visible to the user
 }
 
 // this is the symmetric secret key that will be provided by Fern:
@@ -54,5 +56,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   // send the fern_token to fern docs as a query parameter (please be sure that this is over HTTPS)
   url.searchParams.set("fern_token", fern_token);
 
+  // this will redirect to the callback url in fern docs, which will set the cookie to the "docs.yourdomain.com" domain.
+  // after which, the callback url will redirect the user to the homepage, or return to the URL contained in the state query parameter.
   return NextResponse.redirect(url);
 }
