@@ -40,6 +40,8 @@ function signFernJWT(fern: FernUser): Promise<string> {
     .sign(getJwtTokenSecret());
 }
 
+// After the user has either signed up or logged in, they will be redirected back to a `/callback` url.
+// This is where you will mint a session token for
 export async function GET(req: NextRequest): Promise<NextResponse> {
   const url = new URL(JWT_CALLBACK_PATHNAME, DOCS_ORIGIN);
 
@@ -58,5 +60,11 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
   // this will redirect to the callback url in fern docs, which will set the cookie to the "docs.yourdomain.com" domain.
   // after which, the callback url will redirect the user to the homepage, or return to the URL contained in the state query parameter.
-  return NextResponse.redirect(url);
+  const response = NextResponse.redirect(url);
+
+  // if you've minted your own cookie for your own platform, you can set it here too:
+  // response.cookies.set("access_token", mintAccessToken(req));
+  // response.cookies.set("refresh_token", mintRefreshToken(req));
+  
+  return response;
 }
