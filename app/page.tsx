@@ -1,16 +1,18 @@
+import { signFernJWT, createCallbackUrl } from '@/auth/utils'
 import { redirect } from 'next/navigation'
-import { createCallbackUrl, signFernJWT } from './api/login/route'
 import { use } from 'react'
 
 const audiences = ['internal', 'beta']
 
-export default function Home({
-  searchParams: searchParamsPromise,
-}: {
+interface HomeProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}) {
-  const searchParams = use(searchParamsPromise)
+}
 
+export default function Home(props: HomeProps) {
+  const searchParams = use(props.searchParams)
+
+  // This is a server action that mocks the login process.
+  // please see `app/api/login/route.ts` for a full implementation.
   async function handleSubmit(formData: FormData) {
     'use server'
     const audience = formData
