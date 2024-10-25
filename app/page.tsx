@@ -2,7 +2,7 @@ import { signFernJWT, createCallbackUrl } from '@/auth/utils'
 import { redirect } from 'next/navigation'
 import { use } from 'react'
 
-const audiences = ['internal', 'beta']
+const allRoles = ['internal', 'beta']
 
 interface HomeProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -15,13 +15,11 @@ export default function Home(props: HomeProps) {
   // please see `app/api/login/route.ts` for a full implementation.
   async function handleSubmit(formData: FormData) {
     'use server'
-    const audience = formData
-      .getAll('audience')
-      .filter((audience): audience is string =>
-        audiences.includes(String(audience))
-      )
+    const roles = formData
+      .getAll('role')
+      .filter((role): role is string => allRoles.includes(String(role)))
     const fern_token = await signFernJWT({
-      audience: audience.length > 0 ? audience : undefined,
+      roles: roles.length > 0 ? roles : undefined,
     })
     const state =
       typeof searchParams['state'] === 'string' ? searchParams['state'] : null
@@ -36,7 +34,7 @@ export default function Home(props: HomeProps) {
           className="flex min-w-[300px] flex-col gap-8"
           action={handleSubmit}
         >
-          <h1 className="text-center text-2xl font-bold">Audience Demo</h1>
+          <h1 className="text-center text-2xl font-bold">role Demo</h1>
 
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-center">
@@ -51,17 +49,17 @@ export default function Home(props: HomeProps) {
               </label>
             </div>
 
-            {audiences.map((audience) => (
-              <div key={audience} className="flex items-center justify-center">
+            {allRoles.map((role) => (
+              <div key={role} className="flex items-center justify-center">
                 <input
-                  id={audience}
+                  id={role}
                   type="checkbox"
-                  name="audience"
-                  value={audience}
+                  name="role"
+                  value={role}
                   className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
                 />
-                <label htmlFor={audience} className="ms-2">
-                  {audience}
+                <label htmlFor={role} className="ms-2">
+                  {role}
                 </label>
               </div>
             ))}
