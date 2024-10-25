@@ -2,7 +2,7 @@ import { signFernJWT, createCallbackUrl } from '@/auth/utils'
 import { redirect } from 'next/navigation'
 import { use } from 'react'
 
-const allRoles = ['internal', 'beta']
+const allRoles = ['internal', 'protected']
 
 interface HomeProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -44,8 +44,8 @@ export default function Home(props: HomeProps) {
                 disabled
                 className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
               />
-              <label htmlFor="orphaned" className="ms-2">
-                Orphaned
+              <label htmlFor="everyone" className="ms-2">
+                Everyone
               </label>
             </div>
 
