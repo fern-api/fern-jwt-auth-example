@@ -34,7 +34,7 @@ export default function Home(props: HomeProps) {
           className="flex min-w-[300px] flex-col gap-8"
           action={handleSubmit}
         >
-          <h1 className="text-center text-2xl font-bold">role Demo</h1>
+          <h1 className="text-center text-2xl font-bold">Roles Demo</h1>
 
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-center">
