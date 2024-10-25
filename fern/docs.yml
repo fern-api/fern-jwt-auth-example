@@ -2,32 +2,37 @@ instances:
   - url: https://test-jwt-auth-smoky.docs.buildwithfern.com
 title: Test JWT Auth
 
-audiences:
+roles:
   - protected
   - internal
+  - everyone
 
 navigation:
   - api: API Reference (Public)
   - api: API Reference (Authed)
-    audience: [internal, protected]
+    viewers: [internal, protected]
   - section: My Section
     contents:
       - page: Public Page
         path: test.mdx
       - page: Protected Page
         path: test.mdx
-        audience: protected
+        viewers: protected
       - page: Internal Page
         path: test.mdx
-        audience: internal
+        viewers: internal
+      - page: Everyone Page
+        path: test.mdx
+        orphaned: true
+        viewers: everyone
   - section: Internal Section
-    audience: internal
+    viewers: internal
     contents:
       - page: Internal Page
         path: test.mdx
       - page: Protected Page
         path: test.mdx
-        audience: protected
+        viewers: protected
 
 colors:
   accentPrimary: '#ffffff'

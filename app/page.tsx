@@ -39,6 +39,11 @@ export default function Home(props: HomeProps) {
           <h1 className="text-center text-2xl font-bold">Audience Demo</h1>
 
           <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-center">
+              <input id="everyone" checked disabled />
+              <label htmlFor="orphaned">Orphaned</label>
+            </div>
+
             {audiences.map((audience) => (
               <div key={audience} className="flex items-center justify-center">
                 <input
