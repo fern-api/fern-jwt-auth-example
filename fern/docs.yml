@@ -2,46 +2,74 @@
 
 instances:
   - url: https://test-jwt-auth-smoky.docs.buildwithfern.com
+
 title: Test JWT Auth
 
 roles:
-  - protected
-  - internal
-  - everyone
+  - customers
+  - employees
+  - everyone # default
 
 navigation:
-  - api: API Reference (Public)
-  - api: API Reference (Authed)
+  - page: Overview
+    path: test.mdx
+
+  - page: Overview (Duplicated)
+    path: test.mdx
     viewers:
-      - internal
-      - protected
-  - section: My Section
-    contents:
-      - page: Public Page
+      - everyone
+      - customers
+
+  - api: API Reference (Public)
+    layout:
+      - endpoint: POST /create-movie
+        viewers:
+          - customers
+
+  - api: API Reference (Authed)
+    summary: test.mdx
+    viewers:
+      - customers
+      - employees
+    layout:
+      - page: Employee Page
         path: test.mdx
+        viewers:
+          - employees
+
+  - section: Public Section
+    contents:
+      - page: Everyone Page
+        path: test.mdx
+
       - page: Protected Page
         path: test.mdx
         viewers:
-          - protected
-      - page: Internal Page
+          - employees
+
+      - page: Customer Page
         path: test.mdx
         viewers:
-          - internal
+          - customers
+
+  - section: Customer Section
+    viewers:
+      - customers
+    contents:
+      - page: Customer Page
+        path: test.mdx
+
+      - page: Employee Page
+        path: test.mdx
+        orphaned: true
+        viewers:
+          - employees
+
       - page: Everyone Page
         path: test.mdx
         orphaned: true
         viewers:
           - everyone
-  - section: Internal Section
-    viewers:
-      - internal
-    contents:
-      - page: Internal Page
-        path: test.mdx
-      - page: Protected Page
-        path: test.mdx
-        viewers:
-          - protected
 
 colors:
   accentPrimary: '#ffffff'

@@ -2,7 +2,7 @@ import { signFernJWT, createCallbackUrl } from '@/auth/utils'
 import { redirect } from 'next/navigation'
 import { use } from 'react'
 
-const allRoles = ['internal', 'protected']
+const allRoles = ['customers', 'employees']
 
 interface HomeProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
