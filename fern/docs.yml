@@ -6,19 +6,19 @@ instances:
 title: Test JWT Auth
 
 roles:
+  - everyone # sets the page to public-facing
   - customers
   - employees
-  - everyone # default
 
 navigation:
   - page: Overview
     path: test.mdx
-
-  - page: Overview (Duplicated)
-    path: test.mdx
     viewers:
       - everyone
       - customers
+
+  - page: Overview (Authed)
+    path: test.mdx
 
   - api: API Reference (Public)
     layout:
