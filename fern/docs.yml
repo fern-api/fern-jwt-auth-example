@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://schema.buildwithfern.dev/docs-yml.json
+
 instances:
   - url: https://test-jwt-auth-smoky.docs.buildwithfern.com
 title: Test JWT Auth
@@ -10,29 +12,36 @@ roles:
 navigation:
   - api: API Reference (Public)
   - api: API Reference (Authed)
-    viewers: [internal, protected]
+    viewers:
+      - internal
+      - protected
   - section: My Section
     contents:
       - page: Public Page
         path: test.mdx
       - page: Protected Page
         path: test.mdx
-        viewers: protected
+        viewers:
+          - protected
       - page: Internal Page
         path: test.mdx
-        viewers: internal
+        viewers:
+          - internal
       - page: Everyone Page
         path: test.mdx
         orphaned: true
-        viewers: everyone
+        viewers:
+          - everyone
   - section: Internal Section
-    viewers: internal
+    viewers:
+      - internal
     contents:
       - page: Internal Page
         path: test.mdx
       - page: Protected Page
         path: test.mdx
-        viewers: protected
+        viewers:
+          - protected
 
 colors:
   accentPrimary: '#ffffff'
