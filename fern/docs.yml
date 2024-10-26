@@ -22,7 +22,7 @@ navigation:
 
   - api: API Reference (Public)
     layout:
-      - endpoint: POST /create-movie
+      - endpoint: POST /movies/create-movie
         title: Create Movie (Customers)
         viewers:
           - customers
