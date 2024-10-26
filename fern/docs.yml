@@ -23,10 +23,11 @@ navigation:
   - api: API Reference (Public)
     layout:
       - endpoint: POST /create-movie
+        title: Create Movie (Customers)
         viewers:
           - customers
 
-  - api: API Reference (Authed)
+  - api: API Reference (Customers, Employees)
     summary: test.mdx
     viewers:
       - customers

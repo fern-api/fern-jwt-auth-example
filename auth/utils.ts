@@ -4,7 +4,7 @@ import { SignJWT } from 'jose'
 const JWT_ISSUER = 'https://test-jwt-auth-smoky.vercel.app'
 
 // this is the domain of your docs, (or, if subpathed, use the apex here: yourdomain.com);
-const DOCS_ORIGIN = 'https://test-jwt-auth-smoky.docs.buildwithfern.com'
+const DOCS_ORIGIN = 'https://test-jwt-auth-smoky.docs.staging.buildwithfern.com'
 
 // this is path that you will redirect to in the docs instance, and let Fern set the fern_token. This is preferred.
 // alternatively, you may opt to set the `Set-Cookie` header directly using `fern_token` (case sensitive) if on the same domain.

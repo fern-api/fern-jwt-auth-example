@@ -12,7 +12,7 @@ export const dynamic = 'force-dynamic'
 export async function GET(req: NextRequest): Promise<NextResponse> {
   // Step 1. mint the fern_token
   const fern_token = await signFernJWT({
-    // roles?: [] <-- set audience filters here
+    // roles?: [] <-- set viewer roles here
   })
 
   // Step 2. preserve the state

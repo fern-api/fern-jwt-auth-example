@@ -15,14 +15,20 @@ export default function Home(props: HomeProps) {
   // please see `app/api/login/route.ts` for a full implementation.
   async function handleSubmit(formData: FormData) {
     'use server'
+
+    // 1. validate input
     const roles = formData
       .getAll('role')
       .filter((role): role is string => allRoles.includes(String(role)))
-    const fern_token = await signFernJWT({
-      roles: roles.length > 0 ? roles : undefined,
-    })
+
+    // 2.mint token
+    const fern_token = await signFernJWT({ roles })
+
+    // 3. preserve state
     const state =
       typeof searchParams['state'] === 'string' ? searchParams['state'] : null
+
+    // 4. redirect to fern docs
     const url = createCallbackUrl(fern_token, state)
     redirect(url.toString())
   }
