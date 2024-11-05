@@ -13,7 +13,7 @@ const JWT_CALLBACK_PATHNAME = '/api/fern-docs/auth/jwt/callback'
 
 // JWT payload must include a `fern` key. All fields are optional:
 interface FernUser {
-  apiKey?: string // api key injection into the runnable API Playground
+  api_key?: string // api key injection into the runnable API Playground
   roles?: string[] // ACLs -> this controls which part of the docs are visible to the user
 }
 
